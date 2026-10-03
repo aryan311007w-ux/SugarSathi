@@ -1,0 +1,22 @@
+{
+  "id": "/senior",
+  "name": "DiaCare Senior — Personalized Diabetes Care",
+  "short_name": "DiaCare",
+  "description": "Voice-first personalized diabetes management for senior citizens.",
+  "start_url": "/senior",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "window-controls-overlay", "minimal-ui"],
+  "background_color": "#F8FAFC",
+  "theme_color": "#0F2942",
+  "orientation": "portrait-primary",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
