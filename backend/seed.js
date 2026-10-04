@@ -440,7 +440,7 @@ async function seedDatabase() {
       });
     }
 
-    // 10. Seed Symptoms, Activities, and Meals for Senior A
+    // 10. Seed Symptoms, Activities, and Meals
     await SymptomLog.create([
       {
         patientId: seniorA._id,
@@ -454,6 +454,19 @@ async function seedDatabase() {
         severity: 'moderate',
         notes: 'Mild fatigue after afternoon walk',
         timestamp: new Date(Date.now() - 3 * 24 * 3600 * 1000)
+      },
+      {
+        patientId: seniorB._id,
+        symptoms: ['Sweating', 'Shaking'],
+        severity: 'moderate',
+        notes: 'Morning shakiness resolved after juice',
+        timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000)
+      },
+      {
+        patientId: seniorC._id,
+        symptoms: ['Unusual thirst', 'Frequent urination'],
+        severity: 'mild',
+        timestamp: new Date(Date.now() - 24 * 3600 * 1000)
       }
     ]);
 
@@ -471,7 +484,24 @@ async function seedDatabase() {
         type: 'walking',
         durationMinutes: 20,
         steps: 1800,
+        notes: 'Post-dinner gentle stroll',
         timestamp: new Date(Date.now() - 28 * 3600 * 1000)
+      },
+      {
+        patientId: seniorB._id,
+        type: 'yoga',
+        durationMinutes: 30,
+        steps: 1200,
+        notes: 'Senior chair yoga and breathing exercise',
+        timestamp: new Date(Date.now() - 5 * 3600 * 1000)
+      },
+      {
+        patientId: seniorC._id,
+        type: 'gardening',
+        durationMinutes: 35,
+        steps: 2400,
+        notes: 'Balcony gardening and plant watering',
+        timestamp: new Date(Date.now() - 6 * 3600 * 1000)
       }
     ]);
 
@@ -518,6 +548,55 @@ async function seedDatabase() {
         triggerReason: 'high_glucose',
         status: 'mock_sent',
         timestamp: new Date(Date.now() - 3 * 24 * 3600 * 1000 + 3600000)
+      }
+    ]);
+
+    // 12. Seed Clinical Risk Events
+    await RiskEvent.create([
+      {
+        patientId: seniorA._id,
+        level: 'HIGH',
+        glucoseValue: 245,
+        mealContext: 'after_meal',
+        reason: 'Post-dinner reading of 245 mg/dL is significantly above target range (80-180 mg/dL)',
+        supportingData: 'Patient reported consuming sweets at a family gathering.',
+        suggestedAction: 'Advise patient to drink warm water, monitor after 2 hours, and ensure bedtime dose is taken.',
+        escalationRequired: true,
+        caregiverNotified: true,
+        timestamp: new Date(Date.now() - 3 * 24 * 3600 * 1000 + 3600000)
+      },
+      {
+        patientId: seniorA._id,
+        level: 'ATTENTION',
+        glucoseValue: 195,
+        mealContext: 'after_meal',
+        reason: 'Mild post-prandial spike (195 mg/dL) following lunch.',
+        suggestedAction: 'Encourage 15-minute gentle walking and check before evening tea.',
+        escalationRequired: false,
+        caregiverNotified: false,
+        timestamp: new Date(Date.now() - 24 * 3600 * 1000)
+      },
+      {
+        patientId: seniorB._id,
+        level: 'URGENT',
+        glucoseValue: 56,
+        mealContext: 'before_meal',
+        reason: 'Hypoglycemia event detected (56 mg/dL) before breakfast.',
+        suggestedAction: 'Rule of 15: Give 15g fast-acting sugar (fruit juice or 3 glucose biscuits), re-test in 15 mins.',
+        escalationRequired: true,
+        caregiverNotified: true,
+        timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000)
+      },
+      {
+        patientId: seniorC._id,
+        level: 'HIGH',
+        glucoseValue: 260,
+        mealContext: 'random',
+        reason: 'Random blood glucose excursion during travel.',
+        suggestedAction: 'Review insulin dose schedule and ensure adequate hydration.',
+        escalationRequired: true,
+        caregiverNotified: true,
+        timestamp: new Date(Date.now() - 4 * 24 * 3600 * 1000)
       }
     ]);
 

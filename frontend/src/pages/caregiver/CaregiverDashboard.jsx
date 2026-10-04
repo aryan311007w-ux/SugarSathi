@@ -37,25 +37,29 @@ import {
 } from 'recharts';
 
 export default function CaregiverDashboard() {
-  const { currentSenior, switchDemoProfile } = useApp();
+  const { currentSenior, setCurrentSenior, switchDemoProfile } = useApp();
   const [summary, setSummary] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [testAlertSending, setTestAlertSending] = useState(false);
   const [testAlertToast, setTestAlertToast] = useState('');
+  const [activeProfileKey, setActiveProfileKey] = useState('senior_a');
 
-  const patientId = currentSenior?.id || currentSenior?._id;
+  const patientId = currentSenior?.id || currentSenior?._id || 'default';
 
-  const loadCaregiverData = async () => {
-    if (!patientId) return;
+  const loadCaregiverData = async (targetId) => {
+    const pid = targetId || patientId || 'default';
     setLoading(true);
     try {
       const [sumRes, notifRes] = await Promise.all([
-        getCaregiverSummaryApi(patientId),
-        getCaregiverNotificationsApi(patientId)
+        getCaregiverSummaryApi(pid),
+        getCaregiverNotificationsApi(pid)
       ]);
       setSummary(sumRes);
-      setNotifications(notifRes.notifications || []);
+      setNotifications(notifRes?.notifications || []);
+      if (!currentSenior && sumRes?.patient && setCurrentSenior) {
+        setCurrentSenior(sumRes.patient);
+      }
     } catch (err) {
       console.warn('Caregiver data load error:', err.message);
     } finally {
@@ -65,7 +69,15 @@ export default function CaregiverDashboard() {
 
   useEffect(() => {
     loadCaregiverData();
-  }, [patientId]);
+  }, [currentSenior?.id, currentSenior?._id]);
+
+  const handleSelectSenior = async (profileKey) => {
+    setActiveProfileKey(profileKey);
+    if (switchDemoProfile) {
+      await switchDemoProfile(profileKey);
+    }
+    loadCaregiverData(profileKey);
+  };
 
   const handleSendTestAlert = async () => {
     setTestAlertSending(true);
@@ -81,7 +93,7 @@ export default function CaregiverDashboard() {
     }
   };
 
-  const patient = summary?.patient;
+  const patient = summary?.patient || currentSenior;
   const todayStatus = summary?.todayStatus;
   const trends = summary?.trends;
   const riskAlerts = summary?.riskAlerts || [];
@@ -97,38 +109,66 @@ export default function CaregiverDashboard() {
   return (
     <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-6">
       {/* Caregiver Portal Top Banner */}
-      <div className="bg-[#0F2942] text-white rounded-3xl p-5 sm:p-8 border border-slate-800 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 text-xs font-bold text-teal-400 uppercase tracking-wider mb-1">
-            <ShieldCheck size={16} className="shrink-0" />
-            <span>Caregiver & Family Oversight Portal</span>
+      <div className="bg-[#0F2942] text-white rounded-3xl p-5 sm:p-8 border border-slate-800 shadow-md">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 text-xs font-bold text-teal-400 uppercase tracking-wider mb-1">
+              <ShieldCheck size={16} className="shrink-0" />
+              <span>Caregiver & Family Oversight Portal</span>
+            </div>
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight truncate">
+              Senior: <span className="text-teal-400">{patient?.name || 'Ramesh Patel'}</span>
+            </h1>
+            <p className="text-slate-300 text-xs sm:text-sm mt-1">
+              Age {patient?.age || 68} • {patient?.diabetesType || 'Type 2 Diabetes'} • Target: {patient?.targetRange?.fastingMin || 80}–{patient?.targetRange?.postMealMax || 180} mg/dL
+            </p>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight truncate">
-            Senior: <span className="text-teal-400">{patient?.name || 'Ramesh Patel'}</span>
-          </h1>
-          <p className="text-slate-300 text-xs sm:text-sm mt-1">
-            Age {patient?.age || 68} • {patient?.diabetesType || 'Type 2 Diabetes'} • Target: {patient?.targetRange?.fastingMin || 80}–{patient?.targetRange?.postMealMax || 180} mg/dL
-          </p>
+
+          <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto shrink-0">
+            <Link
+              to="/doctor-report"
+              className="flex-1 sm:flex-none bg-slate-800 hover:bg-slate-700 text-teal-300 hover:text-white px-4 py-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border border-slate-700 transition-colors touch-target-senior"
+            >
+              <FileText size={16} />
+              <span>1-Page Doctor Report</span>
+            </Link>
+
+            <button
+              type="button"
+              onClick={handleSendTestAlert}
+              disabled={testAlertSending}
+              className="flex-1 sm:flex-none bg-teal-600 hover:bg-teal-500 text-white px-4 py-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-sm active:scale-95 touch-target-senior"
+            >
+              <Send size={15} />
+              <span>{testAlertSending ? 'Sending...' : 'Test WhatsApp Alert'}</span>
+            </button>
+          </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto shrink-0">
-          <Link
-            to="/doctor-report"
-            className="flex-1 sm:flex-none bg-slate-800 hover:bg-slate-700 text-teal-300 hover:text-white px-4 py-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 border border-slate-700 transition-colors touch-target-senior"
-          >
-            <FileText size={16} />
-            <span>1-Page Doctor Report</span>
-          </Link>
-
-          <button
-            type="button"
-            onClick={handleSendTestAlert}
-            disabled={testAlertSending}
-            className="flex-1 sm:flex-none bg-teal-600 hover:bg-teal-500 text-white px-4 py-3 rounded-2xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-sm active:scale-95 touch-target-senior"
-          >
-            <Send size={15} />
-            <span>{testAlertSending ? 'Sending...' : 'Test WhatsApp Alert'}</span>
-          </button>
+        {/* Monitored Senior Switcher Bar */}
+        <div className="mt-5 pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold text-slate-300 mr-1">Switch Senior:</span>
+          {[
+            { key: 'senior_a', label: 'Ramesh Patel (68y, Hindi)' },
+            { key: 'senior_b', label: 'Kamalabai Deshmukh (72y, Marathi)' },
+            { key: 'senior_c', label: 'George Fernandes (65y, English)' }
+          ].map(s => {
+            const isCurrent = patient?.name?.includes(s.label.split(' ')[0]) || activeProfileKey === s.key;
+            return (
+              <button
+                key={s.key}
+                type="button"
+                onClick={() => handleSelectSenior(s.key)}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  isCurrent
+                    ? 'bg-teal-500 text-slate-950 font-extrabold shadow-sm'
+                    : 'bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700/80'
+                }`}
+              >
+                {s.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -349,7 +389,7 @@ export default function CaregiverDashboard() {
           </div>
         ) : (
           <div className="text-center py-6 text-slate-400 text-sm">
-            No risk events recorded for {patient?.name}.
+            {loading ? 'Loading clinical risk log...' : `No risk events recorded for ${patient?.name || 'this senior'}.`}
           </div>
         )}
       </section>

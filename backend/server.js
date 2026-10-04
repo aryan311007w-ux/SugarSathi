@@ -97,8 +97,19 @@ async function startServer() {
     connectTimeoutMS: 2500,
     socketTimeoutMS: 30000,
     maxPoolSize: 10
-  }).then(() => {
+  }).then(async () => {
     console.log(`✅ [Boot] MongoDB connection established. Ready State: ${mongoose.connection.readyState}`);
+    try {
+      const SeniorProfile = require('./models/SeniorProfile');
+      const count = await SeniorProfile.countDocuments();
+      if (count === 0) {
+        console.log('🌱 [Boot] Database empty. Auto-seeding DiaCare Senior synthetic dataset...');
+        const { seedDatabase } = require('./seed');
+        await seedDatabase();
+      }
+    } catch (seedErr) {
+      console.warn('⚠️ [Boot] Auto-seed check note:', seedErr.message);
+    }
   }).catch((err) => {
     console.warn('⚠️ [Boot] MongoDB connection unavailable:', err.message);
     console.log('💡 [Boot] DiaCare Senior will run with Resilient In-Memory Mock Data Store for testing.');
