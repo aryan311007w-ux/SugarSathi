@@ -554,7 +554,7 @@ def build_pdf(filename="DiaCare_Senior_Hackathon_Presentation_Guide.pdf"):
     5. <b>Lancet Diabetes & Endocrinology:</b> 'Medication Adherence, Glycemic Control, and Hypoglycemic Risk in Geriatric Diabetes Populations' (2023).<br/>
     <br/>
     <b>Live Repository & Deployment Links:</b><br/>
-    • GitHub: <b>https://github.com/hrshydv-07/SugarSathi.git</b><br/>
+    • GitHub: <b>https://github.com/aryan311007w-ux/SugarSathi.git</b><br/>
     • Hackathon Problem Statement: <b>CXHPS05</b>
     """
     s9_visual = """
