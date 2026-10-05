@@ -179,7 +179,7 @@ export default function PrivacyConsent() {
           <span>Role-Based Access Protections</span>
         </h3>
         <p className="text-xs text-slate-600 leading-relaxed">
-          DiaCare Senior implements strict role-based data partitioning:
+          SugarSathi implements strict role-based data partitioning:
         </p>
         <ul className="text-xs text-slate-600 list-disc list-inside space-y-1">
           <li><strong>Senior Citizen:</strong> Has full access to personal glucose readings, medicines, and symptoms.</li>

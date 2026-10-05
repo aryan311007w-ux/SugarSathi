@@ -105,7 +105,7 @@ export default function SeniorOnboarding() {
       <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200 space-y-6">
         {/* Step Indicator */}
         <div className="flex items-center justify-between border-b border-slate-100 pb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
-          <span>DiaCare Senior Onboarding</span>
+          <span>SugarSathi Onboarding</span>
           <span className="text-teal-700">Step {step} of 3</span>
         </div>
 
@@ -114,7 +114,7 @@ export default function SeniorOnboarding() {
           <div className="space-y-5">
             <div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-                Welcome to DiaCare Senior
+                Welcome to SugarSathi
               </h2>
               <p className="text-slate-600 text-sm mt-1">
                 Let's set up your personalized diabetes care profile.
@@ -343,7 +343,7 @@ export default function SeniorOnboarding() {
             <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-start gap-2">
               <AlertTriangle size={16} className="shrink-0 text-amber-700 mt-0.5" />
               <span>
-                DiaCare Senior organizes clinician-provided data. It does NOT autonomously diagnose or alter medication dosages.
+                SugarSathi organizes clinician-provided data. It does NOT autonomously diagnose or alter medication dosages.
               </span>
             </div>
           </div>

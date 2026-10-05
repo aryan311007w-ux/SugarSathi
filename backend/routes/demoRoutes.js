@@ -92,7 +92,7 @@ router.post('/reset', async (req, res) => {
     const result = await seedDatabase();
     res.json({
       status: 'ok',
-      message: 'DiaCare Senior demo dataset re-initialized successfully.',
+      message: 'SugarSathi demo dataset re-initialized successfully.',
       result
     });
   } catch (err) {

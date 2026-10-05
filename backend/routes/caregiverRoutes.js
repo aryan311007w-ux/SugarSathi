@@ -306,7 +306,7 @@ router.post('/test-alert', async (req, res) => {
     const senior = await SeniorProfile.findById(patientId) || await SeniorProfile.findOne();
 
     const message = customMessage || 
-      `🔔 DiaCare Senior Test Alert\nThis is a test notification confirming your connected care line for ${senior?.name || 'Senior'}.`;
+      `🔔 SugarSathi Test Alert\nThis is a test notification confirming your connected care line for ${senior?.name || 'Senior'}.`;
 
     const result = await sendWhatsAppNotification({
       toNumber: senior?.caregiverPhone || '+919876543210',

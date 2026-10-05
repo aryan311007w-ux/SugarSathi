@@ -13,7 +13,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.json({
     status: 'ok',
-    service: 'DiaCare Senior API',
+    service: 'SugarSathi API',
     problemStatement: 'CXHPS05 - Personalized Diabetes Management for Senior Citizens',
     database: mongoose.connection.readyState === 1 ? 'connected' : 'connecting',
     version: '2.0.0'
@@ -21,8 +21,8 @@ app.get('/', (req, res) => {
 });
 
 // Standard health endpoints
-app.get('/health', (req, res) => res.status(200).json({ status: 'ok', service: 'DiaCare Senior API' }));
-app.get('/api/health', (req, res) => res.status(200).json({ status: 'ok', service: 'DiaCare Senior API' }));
+app.get('/health', (req, res) => res.status(200).json({ status: 'ok', service: 'SugarSathi API' }));
+app.get('/api/health', (req, res) => res.status(200).json({ status: 'ok', service: 'SugarSathi API' }));
 
 // Mongoose Connection Logging
 mongoose.connection.on('connected', () => {
@@ -64,7 +64,7 @@ const { initReminderCron } = require('./jobs/reminderCron');
 
 // 404 handler for unmatched API routes
 app.use('/api', (req, res) => {
-  res.status(404).json({ error: `DiaCare API route not found: ${req.method} ${req.originalUrl}` });
+  res.status(404).json({ error: `SugarSathi API route not found: ${req.method} ${req.originalUrl}` });
 });
 
 // Global Error Handler
@@ -112,7 +112,7 @@ async function startServer() {
     }
   }).catch((err) => {
     console.warn('⚠️ [Boot] MongoDB connection unavailable:', err.message);
-    console.log('💡 [Boot] DiaCare Senior will run with Resilient In-Memory Mock Data Store for testing.');
+    console.log('💡 [Boot] SugarSathi will run with Resilient In-Memory Mock Data Store for testing.');
   });
 
   // Initialize background reminder scheduler
@@ -123,7 +123,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 DiaCare Senior Backend Server is listening on port ${PORT}`);
+    console.log(`🚀 SugarSathi Backend Server is listening on port ${PORT}`);
     console.log(`📡 Health check URL: http://localhost:${PORT}/api/health`);
   });
 }

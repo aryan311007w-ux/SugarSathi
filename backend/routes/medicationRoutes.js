@@ -174,7 +174,7 @@ router.post('/simulate-missed', async (req, res) => {
       reminder.caregiverEscalated = true;
       reminder.caregiverEscalatedAt = new Date();
 
-      const alertMessage = `🔔 DiaCare Senior Alert\n\n` +
+      const alertMessage = `🔔 SugarSathi Alert\n\n` +
         `${senior.name} has not confirmed their scheduled medicine (${reminder.medicationName || 'Metformin 500mg'}) at ${reminder.scheduledTime || '8:00 AM'}.\n\n` +
         `Please check on them if needed.`;
 
@@ -237,7 +237,7 @@ router.post('/simulate-missed', async (req, res) => {
 
     // Trigger Caregiver WhatsApp Notification
     const timeFormatted = new Date(reminder.scheduledTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const alertMessage = `🔔 DiaCare Senior Alert\n\n` +
+    const alertMessage = `🔔 SugarSathi Alert\n\n` +
       `${senior.name} has not confirmed their scheduled medicine (${reminder.title}) at ${timeFormatted}.\n\n` +
       `Please check on them if needed.`;
 

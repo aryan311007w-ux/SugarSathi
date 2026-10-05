@@ -173,7 +173,7 @@ router.post('/', optionalAuth, async (req, res) => {
           channel: 'whatsapp',
           alertType: 'high_glucose',
           title: 'High Glucose Alert',
-          body: `DiaCare Alert: ${senior.name} recorded ${numValue} mg/dL (${mealContext}). Level: ${riskAssessment.level}. Action: ${riskAssessment.suggestedAction}`
+          body: `SugarSathi Alert: ${senior.name} recorded ${numValue} mg/dL (${mealContext}). Level: ${riskAssessment.level}. Action: ${riskAssessment.suggestedAction}`
         });
       }
 
@@ -257,7 +257,7 @@ router.post('/', optionalAuth, async (req, res) => {
       senior?.consentSettings?.whatsappAlerts
     ) {
       const recipientPhone = senior.caregiverPhone || senior.emergencyContact?.phone || '+919876543210';
-      const alertMsg = `⚠️ DiaCare Alert: High Glucose\n\n` +
+      const alertMsg = `⚠️ SugarSathi Alert: High Glucose\n\n` +
         `Patient: ${senior.name}\n` +
         `Reading: ${numValue} mg/dL (${mealContext})\n` +
         `Level: ${riskAssessment.level}\n` +

@@ -379,10 +379,10 @@ export default function SeniorDashboard() {
         type="button"
         onClick={() => setAssistantModalOpen(true)}
         className="fixed bottom-6 right-6 z-30 bg-teal-600 hover:bg-teal-700 text-white font-bold px-4 py-3.5 rounded-full shadow-2xl flex items-center gap-2.5 active:scale-95 transition-all border-2 border-white cursor-pointer"
-        aria-label="Open DiaCare diabetes AI assistant"
+        aria-label="Open SugarSathi diabetes AI assistant"
       >
         <Bot size={24} />
-        <span className="hidden sm:inline text-sm font-semibold">Ask DiaCare</span>
+        <span className="hidden sm:inline text-sm font-semibold">Ask SugarSathi</span>
       </button>
 
       {/* Voice Input Dialog */}

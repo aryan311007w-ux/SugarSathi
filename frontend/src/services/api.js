@@ -420,7 +420,7 @@ export async function getCaregiverNotificationsApi(patientId) {
     notifications: [
       {
         title: 'HIGH GLUCOSE ALERT',
-        message: 'DiaCare Alert: Blood sugar recorded above configured target threshold (245 mg/dL).',
+        message: 'SugarSathi Alert: Blood sugar recorded above configured target threshold (245 mg/dL).',
         triggerReason: 'high_glucose',
         status: 'mock_sent',
         recipientContact: '+91 98765 43210',

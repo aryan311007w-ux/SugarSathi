@@ -17,8 +17,8 @@ export default defineConfig({
       ],
       manifest: {
         id: '/senior',
-        name: 'DiaCare Senior — Personalized Diabetes Care',
-        short_name: 'DiaCare',
+        name: 'SugarSathi — Personalized Diabetes Care',
+        short_name: 'SugarSathi',
         description: 'Elderly-friendly, voice-first personalized diabetes management for senior citizens.',
         theme_color: '#0F2942',
         background_color: '#F8FAFC',

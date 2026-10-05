@@ -105,7 +105,7 @@ export default function DoctorReport() {
           <div>
             <div className="flex items-center gap-2 text-teal-800 font-extrabold text-xl sm:text-2xl tracking-tight">
               <Activity size={24} className="text-teal-700 shrink-0" />
-              <span>DiaCare Senior — Clinical Summary Report</span>
+              <span>SugarSathi — Clinical Summary Report</span>
             </div>
             <p className="text-xs text-slate-500 font-medium mt-1">
               Apex Senior Diabetes Clinic • MCI Reg: MCI-84729-D • Clinician: Dr. S. Rao, MD

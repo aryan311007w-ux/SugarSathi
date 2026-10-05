@@ -146,7 +146,7 @@ export default function Navbar() {
           </div>
           <div className="min-w-0">
             <div className="text-lg sm:text-2xl font-black tracking-tight text-white font-sans truncate">
-              DiaCare <span className="text-teal-400 font-semibold">Senior</span>
+              Sugar <span className="text-teal-400 font-semibold">Sathi</span>
             </div>
             <p className="text-[10px] sm:text-xs text-slate-400 hidden md:block truncate">
               Personalized Diabetes Care for Older Adults

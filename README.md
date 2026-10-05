@@ -1,4 +1,4 @@
-# 🩺 DiaCare Senior (डायकेयर सीनियर / डायकेअर सीनियर)
+# 🩺 SugarSathi (शुगर साथी)
 ### Personalized Diabetes Management for Senior Citizens
 **Hackathon Problem Statement Code:** `CXHPS05`  
 **Target Group:** Senior Citizens (Ages 60+), Family Caregivers, and Treating Clinicians.
@@ -13,7 +13,7 @@ Older adults managing diabetes encounter severe daily friction:
 - **Delayed Intervention:** Mild hypoglycemia (shakiness, dizziness) or post-prandial hyperglycemia often go unnoticed until clinical emergencies arise.
 - **Caregiver Isolation:** Family members lack real-time visibility into whether daily medicines were taken or if warning signs appeared.
 
-**DiaCare Senior** addresses this with an elderly-friendly, voice-first, personalized diabetes management ecosystem connecting the **Senior Citizen**, their **Family Caregiver**, and their **Physician**.
+**SugarSathi** addresses this with an elderly-friendly, voice-first, personalized diabetes management ecosystem connecting the **Senior Citizen**, their **Family Caregiver**, and their **Physician**.
 
 ---
 
@@ -278,7 +278,7 @@ Follow this step-by-step walkthrough during live presentations:
 
 ## 🔒 Safety, Privacy & Ethical Compliance
 
-- **No Autonomous Prescribing:** DiaCare Senior strictly organizes user-entered and clinician-prescribed data. It never prescribes, stops, or alters dosages.
+- **No Autonomous Prescribing:** SugarSathi strictly organizes user-entered and clinician-prescribed data. It never prescribes, stops, or alters dosages.
 - **Explainable Rules:** Clinical risk assessments are deterministic and inspectable by physicians.
 - **Granular Consent:** Data is partitioned using role-based permissions; family caregivers only receive consented information.
 - **Architecture & Standards:** Built with standard modern web technologies (React 19, Node.js, Express, MongoDB Atlas, Tailwind CSS) following W3C WCAG 2.2 accessibility guidelines, RSSDI clinical recommendations, and ADA geriatric diabetes care standards.

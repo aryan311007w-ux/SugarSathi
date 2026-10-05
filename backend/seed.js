@@ -17,7 +17,7 @@ const Notification = require('./models/Notification');
 const { evaluateGlucoseRisk } = require('./services/riskEngine');
 
 async function seedDatabase() {
-  console.log('🌱 Starting DiaCare Senior synthetic dataset initialization...');
+  console.log('🌱 Starting SugarSathi synthetic dataset initialization...');
 
   try {
     // 1. Clear existing collections
@@ -544,7 +544,7 @@ async function seedDatabase() {
         recipientContact: '+919876543210',
         channel: 'whatsapp',
         title: 'HIGH GLUCOSE ALERT',
-        message: 'DiaCare Alert: Ramesh Patel recorded 245 mg/dL after dinner. Reason: Above configured target ceiling.',
+        message: 'SugarSathi Alert: Ramesh Patel recorded 245 mg/dL after dinner. Reason: Above configured target ceiling.',
         triggerReason: 'high_glucose',
         status: 'mock_sent',
         timestamp: new Date(Date.now() - 3 * 24 * 3600 * 1000 + 3600000)
@@ -600,7 +600,7 @@ async function seedDatabase() {
       }
     ]);
 
-    console.log('🎉 DiaCare Senior Synthetic Dataset seeded successfully!');
+    console.log('🎉 SugarSathi Synthetic Dataset seeded successfully!');
     return {
       status: 'ok',
       seniors: [

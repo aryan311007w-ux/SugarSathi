@@ -58,7 +58,7 @@ export default function LandingPage() {
               <Heart size={32} className="fill-white" />
             </div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#0F2942] tracking-tight font-sans">
-              DiaCare <span className="text-teal-600 font-extrabold">Senior</span>
+              Sugar <span className="text-teal-600 font-extrabold">Sathi</span>
             </h1>
           </div>
 
@@ -254,7 +254,7 @@ export default function LandingPage() {
       <footer className="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-center text-xs">
         <div className="max-w-6xl mx-auto px-4 space-y-1.5">
           <p className="text-slate-300 font-semibold">
-            DiaCare Senior — Personalized Diabetes Care for Older Adults (Hackathon Track: CXHPS05)
+            SugarSathi — Personalized Diabetes Care for Older Adults (Hackathon Track: CXHPS05)
           </p>
           <p className="text-slate-500">
             Demonstration build with synthetic patient records. Architecture designed for privacy, explainability, and accessibility.

@@ -11,7 +11,7 @@ if ('serviceWorker' in navigator) {
   registerSW({
     immediate: true,
     onOfflineReady() {
-      console.log('✅ DiaCare Senior is ready for offline operation');
+      console.log('✅ SugarSathi is ready for offline operation');
     }
   });
 }

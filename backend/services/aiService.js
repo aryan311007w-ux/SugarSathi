@@ -20,7 +20,7 @@ if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'YOUR_GEMINI_AP
  */
 async function getDiabetesAIReply({ userMessage, patientId, language = 'en' }) {
   if (!userMessage || typeof userMessage !== 'string') {
-    return 'Hello! I am your DiaCare assistant. How can I help you today?';
+    return 'Hello! I am your SugarSathi assistant. How can I help you today?';
   }
 
   // 1. Gather patient context from MongoDB
@@ -67,18 +67,18 @@ async function getDiabetesAIReply({ userMessage, patientId, language = 'en' }) {
   const lowerMsg = userMessage.toLowerCase();
   if (lowerMsg.includes('change dose') || lowerMsg.includes('stop taking') || lowerMsg.includes('increase my insulin') || lowerMsg.includes('prescribe')) {
     if (language === 'hi') {
-      return `नमस्ते ${patientName} जी। DiaCare कभी भी दवा बदलने या रोकने की सलाह नहीं देता। कृपया कोई भी बदलाव करने से पहले अपने डॉक्टर से तुरंत परामर्श लें।`;
+      return `नमस्ते ${patientName} जी। SugarSathi कभी भी दवा बदलने या रोकने की सलाह नहीं देता। कृपया कोई भी बदलाव करने से पहले अपने डॉक्टर से तुरंत परामर्श लें।`;
     }
     if (language === 'mr') {
-      return `नमस्कार ${patientName}. DiaCare कधीही औषध बदलण्याचा किंवा थांबवण्याचा सल्ला देत नाही. कृपया कोणतेही बदल करण्यापूर्वी ताबडतोब आपल्या डॉक्टरांशी बोला.`;
+      return `नमस्कार ${patientName}. SugarSathi कधीही औषध बदलण्याचा किंवा थांबवण्याचा सल्ला देत नाही. कृपया कोणतेही बदल करण्यापूर्वी ताबडतोब आपल्या डॉक्टरांशी बोला.`;
     }
-    return `Hello ${patientName}. DiaCare Senior is an informational assistant and cannot prescribe, change, or stop your medications. Please consult your doctor for any changes to your prescription.`;
+    return `Hello ${patientName}. SugarSathi is an informational assistant and cannot prescribe, change, or stop your medications. Please consult your doctor for any changes to your prescription.`;
   }
 
   // If Gemini API is available, generate context-grounded response
   if (aiClient) {
     try {
-      const systemPrompt = `You are "DiaCare Senior Assistant", an elderly-friendly, empathetic, clear, and reassuring diabetes companion for senior citizens in India.
+      const systemPrompt = `You are "SugarSathi Assistant", an elderly-friendly, empathetic, clear, and reassuring diabetes companion for senior citizens in India.
 Current User Context:
 - Patient Name: ${contextData.patientName}
 - Target Glucose Range: ${contextData.targetRange}

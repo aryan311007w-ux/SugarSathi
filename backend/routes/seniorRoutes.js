@@ -316,7 +316,7 @@ router.post('/:id/symptoms', optionalAuth, async (req, res) => {
 
     // Trigger caregiver escalation if severe distress signs
     if (isEmergency && senior?.consentSettings?.caregiverSharing) {
-      const alertMsg = `⚠️ DiaCare Alert: Symptom Check\n\n` +
+      const alertMsg = `⚠️ SugarSathi Alert: Symptom Check\n\n` +
         `Patient: ${senior.name}\n` +
         `Reported Symptoms: ${symptoms.join(', ')}\n` +
         `Severity: ${severity.toUpperCase()}\n` +
@@ -419,8 +419,8 @@ router.post('/:id/emergency', async (req, res) => {
     }
 
     const recipientPhone = senior.emergencyContact?.phone || senior.caregiverPhone || '+919876543210';
-    const alertMessage = `🚨 URGENT DIACARE EMERGENCY ALERT\n\n` +
-      `${senior.name} has pressed the Emergency Help button on their DiaCare Senior app.\n` +
+    const alertMessage = `🚨 URGENT SUGARSATHI EMERGENCY ALERT\n\n` +
+      `${senior.name} has pressed the Emergency Help button on their SugarSathi app.\n` +
       `Timestamp: ${new Date().toLocaleTimeString()}\n` +
       `Please contact them immediately at ${senior.phoneNumber}.`;
 

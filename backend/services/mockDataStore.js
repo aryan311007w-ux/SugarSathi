@@ -251,7 +251,7 @@ const mockStore = {
       channel: 'whatsapp',
       alertType: 'missed_medication',
       title: 'Diabetes Medication Alert',
-      body: 'DiaCare Senior Alert: Ramesh Patel has not confirmed the scheduled medicine Metformin 500mg at 8:30 AM.',
+      body: 'SugarSathi Alert: Ramesh Patel has not confirmed the scheduled medicine Metformin 500mg at 8:30 AM.',
       status: 'delivered',
       createdAt: new Date(Date.now() - 3600000)
     }

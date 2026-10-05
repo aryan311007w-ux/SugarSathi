@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: diacare-senior-backend
+    name: sugarsathi-backend
     runtime: node
     rootDir: backend
     buildCommand: npm install

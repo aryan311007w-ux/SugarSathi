@@ -97,7 +97,7 @@ router.get('/patient/:patientId/report', async (req, res) => {
           recentEscalationsCount: 1
         },
         clinicalDisclaimers: [
-          'Generated automatically from patient/caregiver-entered data via DiaCare Senior.',
+          'Generated automatically from patient/caregiver-entered data via SugarSathi.',
           'Not a standalone diagnostic test or clinical judgment. Must be reviewed by the treating clinician.',
           'Configured targets derived from ADA / RSSDI geriatric diabetes clinical consensus guidelines.'
         ]
